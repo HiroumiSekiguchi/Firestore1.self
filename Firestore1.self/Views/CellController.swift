@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CellController: UITableViewCell {
     
@@ -16,6 +17,9 @@ class CellController: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var numLikesLabel: UILabel!
     
+    // インスタンスのレファレンスを設定
+    var postRef: Post!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +28,7 @@ class CellController: UITableViewCell {
     
     // セルを構築するメソッドを宣言
     func configureCell(posty: Post) {
+        self.postRef = posty
         
         titleLabel.text = posty.title
         contentLabel.text = posty.content
@@ -41,9 +46,9 @@ class CellController: UITableViewCell {
     // ハートボタンをタップした時の処理
     @IBAction func likeButtonTapped(_ sender: Any) {
         
+        Firestore.firestore().collection(POSTS).document(postRef.documentId)
+            .updateData([NUM_LIKES: postRef.numLikes + 1])
         
     }
-    
-    
     
 }
