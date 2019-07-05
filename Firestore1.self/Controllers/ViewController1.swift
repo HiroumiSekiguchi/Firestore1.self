@@ -6,6 +6,8 @@
 //  Copyright © 2019 関口大海. All rights reserved.
 //
 
+//
+
 import UIKit
 
 class ViewController1: UIViewController {
