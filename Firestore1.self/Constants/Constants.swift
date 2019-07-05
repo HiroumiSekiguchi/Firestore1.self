@@ -6,6 +6,8 @@
 //  Copyright © 2019 関口大海. All rights reserved.
 //
 
+// 一回コミットしておこう
+
 import Foundation
 
 // 打ち間違えなどのミスに備えて。（StringでFirebase内のkey値を指定すると、Xcodeでサジェストが出ないので。）
