@@ -18,14 +18,16 @@ class Post {
     var category = String()
     var numLikes = Int()
     var timestamp = Date()
+    var documentId = String()
     
-    init(category: String, title: String, content: String, numLikes: Int, timestamp: Date) {
+    init(category: String, title: String, content: String, numLikes: Int, timestamp: Date, documentId: String) {
         
         self.category = category
         self.title = title
         self.content = content
         self.numLikes = numLikes
         self.timestamp = timestamp
+        self.documentId = documentId
         
     }
     
@@ -41,9 +43,10 @@ class Post {
             let numLikes = data[NUM_LIKES] as? Int ?? 0
             let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
             let timestamp = data[TIMESTAMP] as? Date ?? Date()
+            let documentId = document.documentID
             
             // 上記に基づいたPostクラスのインスタンスを生成
-            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp)
+            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId)
             
             // 上記を配列に追加
             postArray.append(newPost)

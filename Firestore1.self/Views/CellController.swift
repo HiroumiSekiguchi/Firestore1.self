@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CellController: UITableViewCell {
     
@@ -15,7 +16,10 @@ class CellController: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var numLikesLabel: UILabel!
-    @IBOutlet weak var likeImage: UIImageView!
+    
+    // documentIdを見つけるための参照用に
+    var postRef: Post!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +28,9 @@ class CellController: UITableViewCell {
     
     // セルを構築するメソッドを宣言
     func configureCell(posty: Post) {
+        
+        // タップされたセルの参照用に
+        self.postRef = posty
         
         titleLabel.text = posty.title
         contentLabel.text = posty.content
@@ -37,6 +44,13 @@ class CellController: UITableViewCell {
         timestampLabel.text = timestampy
 //        print(timestampy)
     }
+    
+    // ボタンのタップでNUM_LIKESをアップデートする
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        Firestore.firestore().collection(POSTS).document(postRef.documentId)
+            .updateData([NUM_LIKES: postRef.numLikes + 1])
+    }
+    
     
     
 }
