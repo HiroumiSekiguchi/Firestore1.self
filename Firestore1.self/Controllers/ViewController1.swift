@@ -1,6 +1,7 @@
 /*
 以下が修正箇所
  ・セルのreusable問題を解決
+ ・setListner()内コードのリファクタリングがバグってたので元に戻した（原因特定して正常に機能させたい...）
  ・checkmarkの付け外しをタップで（セル内のデータにその情報を格納するように）
  ・Dateが投稿取得時のものにならない
  ・Firebaseからデータを取得する時のやり方について研究
@@ -93,8 +94,25 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                         // 配列を初期化
                         self.postArray = [Post]()
                         
-                        // リファクタリングするとこうなる↓（クラスの方にメソッドとして宣言してしまう）
-                        self.postArray = Post.parseData(snapshot: snapshot)
+                        guard let snap = snapshot else { return }
+                        for document in snap.documents {
+                            
+                            let data = document.data()
+                            
+                            let title = data[TITLE] as? String ?? "タイトルなし"
+                            let content = data[CONTENT] as? String ?? "内容なし"
+                            let numLikes = data[NUM_LIKES] as? Int ?? 0
+                            let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
+                            let timestamp = data[TIMESTAMP] as? Date ?? Date()
+                            let documentId = document.documentID
+                            
+                            
+                            // 上記に基づいたPostクラスのインスタンスを生成
+                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId)
+                            
+                            // 上記を配列に追加
+                            self.postArray.append(newPost)
+                        }
                         
                         self.tableView.reloadData()
                     }
@@ -109,8 +127,26 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                     } else {
                         // 配列を初期化
                         self.postArray = [Post]()
-                        // リファクタリングしないとこう↓
-                        self.postArray = Post.parseData(snapshot: snapshot)
+                        
+                        guard let snap = snapshot else { return }
+                        for document in snap.documents {
+                            
+                            let data = document.data()
+                            
+                            let title = data[TITLE] as? String ?? "タイトルなし"
+                            let content = data[CONTENT] as? String ?? "内容なし"
+                            let numLikes = data[NUM_LIKES] as? Int ?? 0
+                            let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
+                            let timestamp = data[TIMESTAMP] as? Date ?? Date()
+                            let documentId = document.documentID
+                            
+                            
+                            // 上記に基づいたPostクラスのインスタンスを生成
+                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId)
+                            
+                            // 上記を配列に追加
+                            self.postArray.append(newPost)
+                        }
                         
                         self.tableView.reloadData()
                     }

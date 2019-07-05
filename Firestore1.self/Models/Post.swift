@@ -31,7 +31,7 @@ class Post {
         
     }
     
-    // クラスメソッドでリファクタリング
+    // クラスメソッドでリファクタリング（何処かが間違っている！）
     class func parseData(snapshot: QuerySnapshot?) -> [Post] {
         guard let snap = snapshot else { return postArray }
         for document in snap.documents {
