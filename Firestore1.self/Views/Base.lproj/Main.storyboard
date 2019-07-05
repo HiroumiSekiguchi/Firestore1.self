@@ -86,7 +86,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="hle-9o-w0O"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="funny"/>
+                                    <segment title="Funny"/>
                                     <segment title="Serious"/>
                                     <segment title="Crazy"/>
                                     <segment title="Popular"/>
