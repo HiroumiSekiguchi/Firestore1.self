@@ -8,6 +8,8 @@
 
 //
 
+// これは、より最新バージョンだからマージできるのでは？
+
 import UIKit
 
 class ViewController1: UIViewController {
