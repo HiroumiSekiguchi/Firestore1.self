@@ -19,4 +19,5 @@ let CONTENT = "content"
 let CATEGORY = "category"
 let NUM_LIKES = "numLikes"
 let TIMESTAMP = "timestamp"
+let CHECKMARK = "checkmark"
 

@@ -19,8 +19,9 @@ class Post {
     var numLikes = Int()
     var timestamp = Date()
     var documentId = String()
+    var checkmark = Bool()
     
-    init(category: String, title: String, content: String, numLikes: Int, timestamp: Date, documentId: String) {
+    init(category: String, title: String, content: String, numLikes: Int, timestamp: Date, documentId: String, checkmark: Bool) {
         
         self.category = category
         self.title = title
@@ -28,6 +29,7 @@ class Post {
         self.numLikes = numLikes
         self.timestamp = timestamp
         self.documentId = documentId
+        self.checkmark = checkmark
         
     }
     

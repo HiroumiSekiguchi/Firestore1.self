@@ -66,7 +66,8 @@ class ViewController2: UIViewController, UITextViewDelegate {
             CONTENT : textView.text!,
             CATEGORY : selectedCategory,
             NUM_LIKES : 0,
-            TIMESTAMP : FieldValue.serverTimestamp()
+            TIMESTAMP : FieldValue.serverTimestamp(),
+            CHECKMARK : false
         ]) { (error) in
             if let err = error {
                 debugPrint("エラーが発生しました：\(err)")

@@ -96,10 +96,10 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                             let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
                             let timestamp = data[TIMESTAMP] as? Date ?? Date()
                             let documentId = document.documentID
-                            
+                            let checkmark = data[CHECKMARK] as? Bool ?? false
                             
                             // 上記に基づいたPostクラスのインスタンスを生成
-                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId)
+                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId, checkmark: checkmark)
                             
                             // 上記を配列に追加
                             self.postArray.append(newPost)
@@ -129,10 +129,10 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                             let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
                             let timestamp = data[TIMESTAMP] as? Date ?? Date()
                             let documentId = document.documentID
-                            
+                            let checkmark = data[CHECKMARK] as? Bool ?? false
                             
                             // 上記に基づいたPostクラスのインスタンスを生成
-                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId)
+                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId, checkmark: checkmark)
                             
                             // 上記を配列に追加
                             self.postArray.append(newPost)
@@ -161,6 +161,9 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // タップされたセルをdeselectedに戻す
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // チェックマークの付け外し
+        postArray[indexPath.row].checkmark = !postArray[indexPath.row].checkmark
     }
     
     
