@@ -29,6 +29,7 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     var selectedCategory = PostCategory.funny.rawValue
     
     
+    // ☆☆☆viewDidLoad☆☆☆ //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,7 +104,6 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                             // 上記を配列に追加
                             self.postArray.append(newPost)
                         }
-                        
                         self.tableView.reloadData()
                     }
                 })
@@ -137,7 +137,6 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                             // 上記を配列に追加
                             self.postArray.append(newPost)
                         }
-                        
                         self.tableView.reloadData()
                     }
                 })
@@ -150,13 +149,12 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         return postArray.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellController {
             cell.configureCell(posty: postArray[indexPath.row])
             return cell
         } else { return UITableViewCell() } // セルが存在しなかった場合
-        
     }
     
     
@@ -165,12 +163,21 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 128
-        
     }
     
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // 消去だった場合
+        if editingStyle == .delete {
+            // Firestoreから該当箇所を削除
+            postsCollectionRef.document(postArray[indexPath.row].documentId).delete()
+            // TVのリロード
+            tableView.reloadData()
+        }
+    }
     
 }
 
