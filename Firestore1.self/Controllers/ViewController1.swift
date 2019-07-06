@@ -153,6 +153,8 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellController {
             cell.configureCell(posty: postArray[indexPath.row])
+            // 「checkmark」のBool値に応じてセルのアクセサリータイプを「.checkmark」に
+            cell.accessoryType = postArray[indexPath.row].checkmark ? .checkmark : .none
             return cell
         } else { return UITableViewCell() } // セルが存在しなかった場合
     }
@@ -162,8 +164,6 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         // タップされたセルをdeselectedに戻す
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // チェックマークの付け外し
-        postArray[indexPath.row].checkmark = !postArray[indexPath.row].checkmark
     }
     
     

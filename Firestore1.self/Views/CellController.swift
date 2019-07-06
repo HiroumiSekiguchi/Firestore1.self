@@ -51,4 +51,14 @@ class CellController: UITableViewCell {
         
     }
     
+    @IBAction func checkButtonTapped(_ sender: Any) {
+        
+        Firestore.firestore().collection(POSTS).document(postRef.documentId)
+            .updateData([CHECKMARK: !postRef.checkmark])
+        
+    }
+    
+    
+    
+    
 }

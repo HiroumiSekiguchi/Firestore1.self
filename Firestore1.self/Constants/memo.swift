@@ -18,7 +18,7 @@ import Foundation
  ・Firebaseからデータを取得する時のやり方について研究
  ・Firebaseにデータを上書きする方法も（モデル内にしっかりdocumentIdの指定を入れる！）
  ・Imageをボタンにする方法について（まぁ自力で実装はできなくてもいいのでは）
- ・セルの削除機能（できた。ただ、funny,serious,crazyでTVがreloadData()されない...なぜだ...）
+ // ・セルの削除機能（できた。ただ、funny,serious,crazyでTVがreloadData()されない...なぜだ...）
  ・セルの内容の編集機能（それ用のページに行って編集、上書き）
  */
 
