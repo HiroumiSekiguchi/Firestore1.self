@@ -33,14 +33,14 @@ class CellController: UITableViewCell {
         titleLabel.text = posty.title
         contentLabel.text = posty.content
         numLikesLabel.text = String(posty.numLikes)
-//        timestampLabel.text = posty.timestamp
         
-        // Date型からString型bの日付を生成
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM, dd, hh:mm"
-        let timestampy = formatter.string(from: posty.timestamp)
-        timestampLabel.text = timestampy
-//        print(timestampy)
+        // Date型からString型の日付を生成⑴
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+//        dateFormatter.dateFormat = "MM/dd HH:mm"
+//        let timestampy = dateFormatter.string(from: posty.timestamp)
+//        timestampLabel.text = timestampy
+        
     }
     
     // ハートボタンをタップした時の処理
