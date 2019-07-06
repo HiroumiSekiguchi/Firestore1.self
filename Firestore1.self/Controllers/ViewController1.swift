@@ -38,6 +38,11 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     var postsCollectionRef: CollectionReference!
     var postsListner: ListenerRegistration!
     
+    // タップされたセルのデータ
+    var currentTitle = String()
+    var currentContent = String()
+    var tappedId = String()
+    
     
     // @@@@@@@@@@ viewWill系 @@@@@@@@@@ //
     
@@ -124,6 +129,18 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // タップされたセルをdeselectedに戻す
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // タップされたセルのtitleとcontentデータを取得してvc2に渡しながら遷移
+        currentTitle = postArray[indexPath.row].title
+        currentContent = postArray[indexPath.row].content
+        tappedId = postArray[indexPath.row].documentId
+        
+        // 遷移先のVCを宣言＋値を送信＋画面を遷移
+        let vc2: ViewController2 = self.storyboard?.instantiateViewController(withIdentifier: "vc2") as! ViewController2
+        vc2.titlePlaceholder = currentTitle
+        vc2.contentPlaceholder = currentContent
+        vc2.tappedId = tappedId
+        self.navigationController?.pushViewController(vc2, animated: true)
         
     }
     

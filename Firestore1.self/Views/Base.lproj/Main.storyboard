@@ -13,7 +13,7 @@
         <!--Firestore1.self-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController1" customModule="Firestore1_self" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vc1" id="BYZ-38-t0r" customClass="ViewController1" customModule="Firestore1_self" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,16 +31,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXj-ic-gwW">
-                                                    <rect key="frame" x="15" y="11" width="143" height="23"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIa-FX-nwp">
-                                                    <rect key="frame" x="166" y="11" width="194" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -59,7 +52,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-D5-Cjf">
-                                                    <rect key="frame" x="15" y="95" width="25" height="25"/>
+                                                    <rect key="frame" x="15" y="90" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="1" green="0.36019965840000001" blue="0.2124514056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="Button" image="hearticon2-1"/>
@@ -68,7 +61,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10B-nX-OA2">
-                                                    <rect key="frame" x="100" y="90" width="98" height="30"/>
+                                                    <rect key="frame" x="100" y="90" width="86" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.54786815990000004" blue="0.32537292080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -79,6 +72,13 @@
                                                         <action selector="checkButtonTapped:" destination="nss-0u-OST" eventType="touchUpInside" id="XAM-VE-M9o"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIa-FX-nwp">
+                                                    <rect key="frame" x="217" y="102" width="143" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -127,6 +127,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="l9F-tt-XZN" id="tOL-go-g9T"/>
                         <outlet property="tableView" destination="Dk6-pF-asT" id="rPg-IV-Wk4"/>
+                        <segue destination="XjY-dT-t3e" kind="show" identifier="next" id="Y0k-0K-ANa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -136,7 +137,7 @@
         <!--View Controller2-->
         <scene sceneID="5fi-n9-Fop">
             <objects>
-                <viewController id="XjY-dT-t3e" customClass="ViewController2" customModule="Firestore1_self" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vc2" id="XjY-dT-t3e" customClass="ViewController2" customModule="Firestore1_self" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fd5-9L-7wo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,4 +232,7 @@
         <image name="hearticon2-1" width="50" height="50"/>
         <image name="plusicon1" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Y0k-0K-ANa"/>
+    </inferredMetricsTieBreakers>
 </document>
