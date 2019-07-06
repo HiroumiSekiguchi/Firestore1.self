@@ -21,3 +21,11 @@ let NUM_LIKES = "numLikes"
 let TIMESTAMP = "timestamp"
 let CHECKMARK = "checkmark"
 
+
+enum PostCategory: String {
+    case funny = "funny"
+    case serious = "serious"
+    case crazy = "crazy"
+    case popular = "popular"
+}
+

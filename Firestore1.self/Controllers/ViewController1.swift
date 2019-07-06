@@ -3,44 +3,19 @@
 import UIKit
 import Firebase
 
-enum PostCategory: String {
-    case funny = "funny"
-    case serious = "serious"
-    case crazy = "crazy"
-    case popular = "popular"
-}
-
 class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // @@@@@@@@@@ 変数の宣言、segmentedControlによる切り替え @@@@@@@@@@ //
     
     // UI部品の宣言
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl! // segmentedControlはOutletのUI部品として定義する必要がある！
     
-    
     // 投稿を格納する配列
     var postArray = [Post]()
     
-    // Firebaseの参照元を指定するための初期変数を宣言
-    var postsCollectionRef: CollectionReference!
-    var postsListner: ListenerRegistration!
-    
     // カテゴリによるソーティング
     var selectedCategory = PostCategory.funny.rawValue
-    
-    
-    // ☆☆☆viewDidLoad☆☆☆ //
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // tableViewのデリゲートメソッドの有効化
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        // Firebaseの参照元を指定
-        postsCollectionRef = Firestore.firestore().collection(POSTS)
-        
-    }
     
     // segmentedControlの値によってcategoryの値を切り替える
     @IBAction func categoryChanged(_ sender: Any) {
@@ -54,23 +29,39 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         default:
             selectedCategory = PostCategory.popular.rawValue
         }
-        
         // 一回リスナーをリセットし、再びセットする。
-        postsListner.remove()
+        removeListner()
         setListner()
-        
     }
     
+    // Firebaseの参照元を指定するための初期変数を宣言
+    var postsCollectionRef: CollectionReference!
+    var postsListner: ListenerRegistration!
     
-    // ☆☆☆viewWillAppear内でFirebaseからデータを取得☆☆☆ //
+    
+    // @@@@@@@@@@ viewWill系 @@@@@@@@@@ //
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // tableViewのデリゲートメソッドの有効化
+        tableView.delegate = self
+        tableView.dataSource = self
+        // Firebaseの参照元を指定
+        postsCollectionRef = Firestore.firestore().collection(POSTS)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setListner()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        postsListner.remove()
+        removeListner()
     }
+    
+    
+    
+    // @@@@@@@@@@ イベントリスナー系 @@@@@@@@@@ //
     
     // イベントリスナーを宣言
     func setListner() {
@@ -92,7 +83,7 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             postsListner = postsCollectionRef
                 .whereField(CATEGORY, isEqualTo: selectedCategory)
-                .order(by: TIMESTAMP, descending: true)
+//                .order(by: TIMESTAMP, descending: true)
                 .addSnapshotListener({ (snapshot, error) in
                     if let err = error {
                         debugPrint("エラー：\(err)")
@@ -106,8 +97,15 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    // リスナーをリセットするメソッド
+    func removeListner() {
+        postsListner.remove()
+    }
     
-    // ☆☆☆以下、tableViewに関する設定☆☆☆ //
+    
+    
+    // @@@@@@@@@@ 以下、tableViewに関する設定 @@@@@@@@@@ //
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postArray.count
     }
@@ -145,5 +143,6 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+
 }
 
