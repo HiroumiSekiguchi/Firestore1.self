@@ -74,7 +74,6 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // イベントリスナーを宣言
     func setListner() {
-        
         if selectedCategory == PostCategory.popular.rawValue {
             postsListner = postsCollectionRef
                 .order(by: NUM_LIKES, descending: true)
@@ -84,26 +83,9 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                     } else {
                         // 配列を初期化
                         self.postArray = [Post]()
+                        // リファクタリング。配列の初期化もメソッド内に含めた。
+                        self.postArray = Post.parseData(snapshot: snapshot)
                         
-                        guard let snap = snapshot else { return }
-                        for document in snap.documents {
-                            
-                            let data = document.data()
-                            
-                            let title = data[TITLE] as? String ?? "タイトルなし"
-                            let content = data[CONTENT] as? String ?? "内容なし"
-                            let numLikes = data[NUM_LIKES] as? Int ?? 0
-                            let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
-                            let timestamp = data[TIMESTAMP] as? Date ?? Date()
-                            let documentId = document.documentID
-                            let checkmark = data[CHECKMARK] as? Bool ?? false
-                            
-                            // 上記に基づいたPostクラスのインスタンスを生成
-                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId, checkmark: checkmark)
-                            
-                            // 上記を配列に追加
-                            self.postArray.append(newPost)
-                        }
                         self.tableView.reloadData()
                     }
                 })
@@ -115,28 +97,9 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
                     if let err = error {
                         debugPrint("エラー：\(err)")
                     } else {
-                        // 配列を初期化
-                        self.postArray = [Post]()
+                        // リファクタリング。配列の初期化もメソッド内に含めた。
+                        self.postArray = Post.parseData(snapshot: snapshot)
                         
-                        guard let snap = snapshot else { return }
-                        for document in snap.documents {
-                            
-                            let data = document.data()
-                            
-                            let title = data[TITLE] as? String ?? "タイトルなし"
-                            let content = data[CONTENT] as? String ?? "内容なし"
-                            let numLikes = data[NUM_LIKES] as? Int ?? 0
-                            let category = data[CATEGORY] as? String ?? PostCategory.funny.rawValue
-                            let timestamp = data[TIMESTAMP] as? Date ?? Date()
-                            let documentId = document.documentID
-                            let checkmark = data[CHECKMARK] as? Bool ?? false
-                            
-                            // 上記に基づいたPostクラスのインスタンスを生成
-                            let newPost = Post(category: category, title: title, content: content, numLikes: numLikes, timestamp: timestamp, documentId: documentId, checkmark: checkmark)
-                            
-                            // 上記を配列に追加
-                            self.postArray.append(newPost)
-                        }
                         self.tableView.reloadData()
                     }
                 })
