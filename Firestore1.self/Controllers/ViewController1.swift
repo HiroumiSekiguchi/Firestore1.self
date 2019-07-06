@@ -88,7 +88,7 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             postsListner = postsCollectionRef
                 .whereField(CATEGORY, isEqualTo: selectedCategory)
-//                .order(by: TIMESTAMP, descending: true)
+                .order(by: TIMESTAMP, descending: true)
                 .addSnapshotListener({ (snapshot, error) in
                     if let err = error {
                         debugPrint("エラー：\(err)")

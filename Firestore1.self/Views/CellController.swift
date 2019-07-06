@@ -35,11 +35,11 @@ class CellController: UITableViewCell {
         numLikesLabel.text = String(posty.numLikes)
         
         // Date型からString型の日付を生成⑴
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-//        dateFormatter.dateFormat = "MM/dd HH:mm"
-//        let timestampy = dateFormatter.string(from: posty.timestamp)
-//        timestampLabel.text = timestampy
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        dateFormatter.dateFormat = "MM/dd HH:mm"
+        let timestampy = dateFormatter.string(from: posty.timestamp)
+        timestampLabel.text = timestampy
         
     }
     

@@ -22,10 +22,10 @@ import Foundation
  ・投稿やアップデートのDateによるソートの実装（3segmentにおいて。）＊reloadDataの機能障害のため一回外してしまったので。
  ・Imageをボタンにする方法について（まぁ自力で実装はできなくてもいいのでは）
  // セルの削除機能（できた。ただ、funny,serious,crazyでTVがreloadData()されない...なぜだ...）
- 
+ // 投稿のtimestampでソートする部分はできた（インデックスの作成？が出来ていなかった）
  ＜残りのマスト事項＞
  # Firebaseからデータをピンポイントで取得する方法（＋Firestoreに関する研究）
- # Date型を変換してしっかり表示、それによってfscセグメントは降順にソート
+ # Date型を変換してtimestampLabelに表示する
  
  ＜余力があれば＞
  # Imageをボタンにする方法について
