@@ -118,6 +118,7 @@ class ViewController1: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CellController {
+            // ☆☆☆セルの構築☆☆☆ //
             cell.configureCell(posty: postArray[indexPath.row])
             // 「checkmark」のBool値に応じてセルのアクセサリータイプを「.checkmark」に
             cell.accessoryType = postArray[indexPath.row].checkmark ? .checkmark : .none
